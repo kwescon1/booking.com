@@ -28,7 +28,7 @@ class RegisterUserRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'confirmed', Password::defaults()],
-            'role_id' => ['required', Rule::in(Roles::ROLE_OWNER, Roles::ROLE_USER)],
+            'role_id' => ['required', Rule::in(Roles::ROLE_OWNER->resolveOwner(), Roles::ROLE_USER->resolveUser())],
         ];
     }
 }
