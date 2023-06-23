@@ -45,6 +45,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    protected static function booted()
+    {
+        self::observe(User::class);
+    }
+
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
